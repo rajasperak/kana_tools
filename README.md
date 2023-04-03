@@ -1,9 +1,9 @@
 # kana_tools
 ![data](https://github.com/rajasperak/kana_tools/blob/main/data.png)
 
-k (karl) ana(analyses): outils les plus utilisés dans un cadre professionnel jusq'ici. le but est d'avoir les outils nécessaire pour un pipeline d'analyse, à disposition rapidement, pour des analyses statistiques de base, des analyses factorielles, des analyses de réduction de dimensions,du clustering et de features selections:
+**k** (karl) **ana**(analyses): outils les plus utilisés dans un cadre professionnel jusq'ici. le but est d'avoir les outils nécessaire pour un pipeline d'analyse, à disposition rapidement, pour des analyses statistiques de base, des analyses factorielles, des analyses de réduction de dimensions,du clustering et de features selections:
 
-contenus:
+**contenus**:
 - class numeric_corr: destiné à analyser la correlation entre les variable numériques dans un dataframe                                                     
 - class indep_between_two: destiné à analyser si dépendance ou no il y a entre deux colonnes d'un dataframe de valeur numériques.                           
 - class prepocessing: destiné à préparer le dataframe et à avoir une première idée de ce qu'il y a à l'interieur. il y a quelques fonction qui permet également de faire quelques nettoyage.
