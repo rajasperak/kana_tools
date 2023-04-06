@@ -214,25 +214,69 @@ from datetime import datetime
 
 #********************************** features selection ***********************************************
 
-
-from sklearn.datasets import load_wine
-wine_data = load_wine()
-df_wine = pd.DataFrame(data=wine_data.data,columns=wine_data.feature_names)
-df_wine['target'] = wine_data.target
-print(df_wine)
-df_wine.drop(['od280/od315_of_diluted_wines'],axis=1,inplace=True)
-i_select = selection_facteur(b_swarm_plot=False,target_col="target",direct_df=df_wine)
-i_select.verifications()
-f1_score_allfact = i_select.scoring(df=df_wine)
-X_train,X_test,Y_train,Y_test=i_select.split_data(df_wine)
+#********************* approche par la variance *******************************
+# from sklearn.datasets import load_wine
+# wine_data = load_wine()
+# df_wine = pd.DataFrame(data=wine_data.data,columns=wine_data.feature_names)
+# df_wine['target'] = wine_data.target
+# print(df_wine)
+# i_select = selection_facteur(b_swarm_plot=False,target_col="target",direct_df=df_wine)
+# #je vérifie la proportion ou frequence de chaque label
+# i_select.verifications()
+# f1_score_allfact = i_select.scoring(df=df_wine)
+# X_train,X_test,Y_train,Y_test=i_select.split_data(df_wine)
+# # je ne garde pas les variables dont les variables est en dessous d'une seuille
+# # que j'aurais choisi en fonction de la variance des autres variables, apres
+# # reduction des variables evidemment
 # i_select.variance_approche(X_train)
-# #drop some features after seeing variances
+# #on choisi par ex la colonne ash et magnesium a exclure de l analyse:
 # X_train_var = X_train.drop(['ash','magnesium'],axis=1)
 # X_test_var = X_test.drop(['ash','magnesium'],axis=1)
 # f1_score_var_app = i_select.scoring(X_train=X_train_var,X_test=X_test_var,Y_train=Y_train,Y_test=Y_test)
-# i_select.kbest_features_approche(b_k_connue=True)
-# i_select.kbest_features_approche(b_k_connue=False,k=3)
-print(X_train)
-print(type(X_train))
-print(X_train.dtypes)
-i_select.boruta_approche(X_train,X_test,Y_train,Y_test)
+
+
+#******************* approche par iterration kbest features *******************
+
+# from sklearn.datasets import load_wine
+# wine_data = load_wine()
+# df_wine = pd.DataFrame(data=wine_data.data,columns=wine_data.feature_names)
+# df_wine['target'] = wine_data.target
+# print(df_wine)
+# i_select = selection_facteur(b_swarm_plot=False,target_col="target",direct_df=df_wine)
+# i_select.verifications()
+# f1_score_allfact = i_select.scoring(df=df_wine)
+# X_train,X_test,Y_train,Y_test=i_select.split_data(df_wine)
+# i_select.kbest_features_approche(b_k_connue=False)
+# #maintenant qu'on a une idee du nombre de facteur optimal, on peut donner une valeur a k
+# #i_select.kbest_features_approche(b_k_connue=True,k=3)
+
+
+#******************* approche par iterration RFE *******************
+
+# from sklearn.datasets import load_wine
+# wine_data = load_wine()
+# df_wine = pd.DataFrame(data=wine_data.data,columns=wine_data.feature_names)
+# df_wine['target'] = wine_data.target
+# print(df_wine)
+# i_select = selection_facteur(b_swarm_plot=False,target_col="target",direct_df=df_wine)
+# i_select.verifications()
+# f1_score_allfact = i_select.scoring(df=df_wine)
+# X_train,X_test,Y_train,Y_test=i_select.split_data(df_wine)
+# #i_select.rfe_approche(step=1)
+# i_select.rfe_approche(step=10,k=3)
+
+
+#******************* approche par iterration avec borata **********************
+
+
+# from sklearn.datasets import load_wine
+# wine_data = load_wine()
+# df_wine = pd.DataFrame(data=wine_data.data,columns=wine_data.feature_names)
+# df_wine['target'] = wine_data.target
+# print(df_wine)
+# #df_wine.drop(['od280/od315_of_diluted_wines'],axis=1,inplace=True)
+# i_select = selection_facteur(b_swarm_plot=False,target_col="target",direct_df=df_wine)
+# i_select.verifications()
+# f1_score_allfact = i_select.scoring(df=df_wine)
+# X_train,X_test,Y_train,Y_test=i_select.split_data(df_wine)
+# i_select.boruta_approche(X_train,X_test,Y_train,Y_test)
